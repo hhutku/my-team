@@ -1,0 +1,30 @@
+{
+  "name": "my-team",
+  "version": "1.0.0",
+  "description": "OOP and testing-Team Profile Generator Using Node.js",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hhutku/team-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hhutku/team-generator/issues"
+  },
+  "homepage": "https://github.com/hhutku/team-generator#readme",
+  "dependencies": {
+    "inquirer": "^6.3.1",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
