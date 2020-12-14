@@ -17,7 +17,59 @@ const render = require("./lib/htmlRenderer");
 
 const employeeList=[];
 
+// Main function to run the application 
+async function init(){
+        console.log("*********************************")
+            var genAnswersData = await inquirer.prompt(questions)
+            var title=genAnswersData.title;
+            switch (title){
+                case "Manager":
 
+               var managerInfo= await askUserForManagerInfo();
+
+               const allManagerInfo = {
+                ...genAnswersData,
+                ...managerInfo
+                 };
+                 const manager=new Manager(allManagerInfo.name,allManagerInfo.id,allManagerInfo.email,allManagerInfo.officeNo)
+                 employeeList.push(manager)
+                break;
+                case "Intern":
+                const internInfo= await askInternInfo();
+                var allInternInfo={
+                    ...genAnswersData,
+                    ...internInfo
+                };
+                const intern=new Manager(allInternInfo.name,allInternInfo.id,allInternInfo.email,allInternInfo.school)
+                employeeList.push(intern)
+                
+                break;
+                case "Engineer":
+                    const engineerInfo= await askEngineerInfo();
+                const allEngineerInfo={
+                    ...genAnswersData,
+                    ...engineerInfo
+                };  
+                const engineer=new Engineer(allEngineerInfo.name,allEngineerInfo.id,allEngineerInfo.email,allEngineerInfo.github)
+                employeeList.push(engineer);
+                
+                
+                break;
+            }
+            
+           const askAdd=await askAddMember();
+
+           if(askAdd.finish=="Yes"){
+               init();
+           }else{
+                          
+            const html=  render(employeeList);
+            await writeFile(outputPath, html);
+            console.log('team.html was written successfully');
+               return;
+           }
+           
+    }
 // function for manager part
    function askUserForManagerInfo(){
          return inquirer.prompt([
@@ -65,7 +117,7 @@ function askAddMember(){
          },])
 }
 
-   
+    init();
 
 
 
